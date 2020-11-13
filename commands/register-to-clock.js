@@ -3,7 +3,7 @@ module.exports = {
 	description: 'Adds the user to the time clock',
 	execute(message) {
 		const fs = require('fs');
-		const userFileName = './userTimeCard.json';
+		const userFileName = '/tmp/userTimeCard.json';
 		let userData;
 
 		fs.readFile(userFileName, 'utf8', (err, jsonString) => {
