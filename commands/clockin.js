@@ -5,7 +5,7 @@ module.exports = {
 	description: 'clocking user in',
 	execute(message) {
 		const fs = require('fs');
-		const userFileName = '/tmp/userTimeCard.json';
+		const userFileName = './userTimeCard.json';
 
 		fs.readFile(userFileName, 'utf8', (err, jsonString) => {
 			if (err) {
