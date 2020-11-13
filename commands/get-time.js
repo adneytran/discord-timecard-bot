@@ -1,5 +1,5 @@
 const pluralize = require('pluralize');
-const userList = require('./tmp/userTimeCard.json');
+const userList = require('/tmp/userTimeCard.json');
 module.exports = {
 	name: 'gettime',
 	description: 'gets a user\'s total time clocked in',
