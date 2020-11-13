@@ -46,6 +46,5 @@ client.on('message', message => {
 });
 
 // login to Discord with your app's token
-console.log(process.env);
 client.login(process.env.DISCORD_TOKEN);
 
