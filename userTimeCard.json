@@ -1,0 +1,12 @@
+{
+    "145458044174729216": {
+        "totalTimeInSeconds": 172.333,
+        "timeCardData": [
+            {
+                "clockInTime": "2020-11-13T02:55:44.792Z",
+                "clockOutTime": "2020-11-13T02:58:37.125Z"
+            }
+        ],
+        "isClockedIn": false
+    }
+}
