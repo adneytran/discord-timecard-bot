@@ -10,8 +10,9 @@ module.exports = {
 			if (err) {
 				console.log('File read failed:', err);
 				return;
-			} else {
-				userList = JSON.parse(jsonString.toString());
+			}
+			else {
+				const userData = JSON.parse(jsonString.toString());
 				let userId = message.author.id;
 				let messagePrefix = 'You have';
 
@@ -20,19 +21,23 @@ module.exports = {
 						message.channel.send('beep boop I am always clocked in');
 						return;
 					}
+					else if ((!Object.prototype.hasOwnProperty.call(userData, userId))) {
+						message.channel.send('this user isn\'t part of some dumb deal lmao');
+						return;
+					}
 					userId = message.mentions.members.first().id;
 					messagePrefix = 'This user has';
 				}
-				else if (!Object.prototype.hasOwnProperty.call(userList, userId)) {
+				else if (!Object.prototype.hasOwnProperty.call(userData, userId)) {
 					message.channel.send('this user isn\'t part of some dumb deal lmao');
 					return;
 				}
 
-				const userTimeInSeconds = userList[userId].totalTimeInSeconds;
+				const userTimeInSeconds = userData[userId].totalTimeInSeconds;
 				const hours = Math.floor(userTimeInSeconds / 3600);
 				const minutes = Math.floor((userTimeInSeconds % 3600) / 60);
 				message.channel.send(messagePrefix + ' slaved for ' + hours + pluralize(' hour', hours) + ' and ' + minutes + pluralize(' minute', minutes));
 			}
-		})
+		});
 	},
 };

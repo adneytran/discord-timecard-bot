@@ -1,3 +1,7 @@
 {
-	"prefix": "!"
+	"prefix": "!",
+	"params": {
+		"Bucket": "discordtimecardbot",
+		"Key": "userTimeCard.json"
+	}
 }
