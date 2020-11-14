@@ -1,18 +1,26 @@
 const pluralize = require('pluralize');
+const AWS = require('aws-sdk');
+const s3 = new AWS.S3({
+	accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+	secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+	Bucket: 'discordtimecardbot',
+});
+
+const params = {
+	Bucket: 'discordtimecardbot',
+	Key: 'userTimeCard.json',
+};
+
 module.exports = {
 	name: 'gettime',
 	description: 'gets a user\'s total time clocked in',
 	execute(message) {
-		const fs = require('fs');
-		const userFileName = './userTimeCard.json';
-
-		fs.readFile(userFileName, 'utf8', (err, jsonString) => {
-			if (err) {
-				console.log('File read failed:', err);
-				return;
+		s3.getObject(params, function(error, data) {
+			if (error != null) {
+				console.log('Failed to retrieve an object: ' + error);
 			}
 			else {
-				const userData = JSON.parse(jsonString.toString());
+				const userData = JSON.parse(data.Body.toString('utf-8'));
 				let userId = message.author.id;
 				let messagePrefix = 'You have';
 
